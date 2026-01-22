@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TreasureRace_2025.EndGamePage"
+             Title="EndGamePage">
+    <VerticalStackLayout>
+        <Image
+           Source="logo_school.jpg"
+           HeightRequest="150"
+           Aspect="AspectFit"
+           SemanticProperties.Description="dot net bot in a race car number eight" />
+        <Label 
+            Text="Thanks you very much for playing Tcherhovsky Lamilion"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" 
+            FontSize="18"/>
+        <Label 
+            Text="הציון של הקבוצה"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" 
+            FontSize="25"/>
+
+
+        <Label 
+            x:Name="lblFinalSAcore"
+            Text=""
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" 
+            FontSize="50"/>
+        
+        <Label 
+    Text="האפליקציה נבנתה על ידי  תלמידי מגמת מחשבים יא, תיכון טשרנחובסקי"
+    VerticalOptions="Center" 
+    HorizontalOptions="Center" />
+    </VerticalStackLayout>
+</ContentPage>

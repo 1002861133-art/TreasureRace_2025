@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TreasureRace_2025.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="20,0"
+            Spacing="20">
+            <Image
+                  Source="logo_school.jpg"
+                  HeightRequest="50"
+                  Aspect="AspectFit"
+                  SemanticProperties.Description="dot net bot in a race car number eight" />
+            <Image
+                Source="dotnet_bot.png"
+                HeightRequest="50"
+                Aspect="AspectFit"
+                SemanticProperties.Description="dot net bot in a race car number eight" />
+
+            <Label
+                Text="Treasure Race"
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level2" />
+
+
+            <Grid
+                RowDefinitions="*,*,*,*,*,*,*"
+                ColumnDefinitions="*,*"
+                >
+                <Entry Grid.Row="0" Grid.Column="0"
+                       x:Name="entGroupName"
+                       FontSize="16"
+                       Text="" Placeholder="Group Name"
+                />
+                <Entry Grid.Row="0" Grid.Column="1"
+                       Keyboard="Numeric"
+                       x:Name="entGroupNumber"
+                       FontSize="16"
+                       Text="" Placeholder="Group Number"/>
+                <Label Grid.Row="1" Grid.Column="0"
+                       x:Name="lblPlayersList"
+                       FontSize="16" FontAttributes="Bold"
+                       Text="Players Names:" />
+                <Entry Grid.Row="2" Grid.Column="0"
+                       x:Name="entPlayer1"
+                       FontSize="16"
+                       Text="" Placeholder="Player 1 Name"/>
+                <Entry Grid.Row="2" Grid.Column="1"
+                       x:Name="entPlayer2"
+                       FontSize="16"
+                       Text="" Placeholder="Player 2 Name"/>
+                <Entry Grid.Row="3" Grid.Column="0"
+                       x:Name="entPlayer3"
+                       FontSize="16"
+                       Text="" Placeholder="Player 3 Name"/>
+                <Entry Grid.Row="3" Grid.Column="1"
+                       x:Name="entPlayer4"
+                       FontSize="16"
+                       Text="" Placeholder="Player 4 Name"/>
+                <Entry Grid.Row="4" Grid.Column="0"
+                       x:Name="entPlayer5"
+                       FontSize="16"
+                       Text="" Placeholder="Player 5 Name"/>
+                <Entry Grid.Row="4" Grid.Column="1"
+                       x:Name="entPlayer6"
+                       FontSize="16"
+                       Text="" Placeholder="Player 6 Name"/>
+                <Entry Grid.Row="5" Grid.Column="0"
+                        x:Name="entPlayer7"
+                        FontSize="16"
+                        Text="" Placeholder="Player 7 Name"/>
+                <Entry Grid.Row="5" Grid.Column="1"
+                        x:Name="entPlayer8"
+                        FontSize="16"
+                        Text="" Placeholder="Player 8 Name"/>
+                <Entry Grid.Row="6" Grid.Column="0"
+                        x:Name="entPlayer9"
+                        FontSize="16"
+                        Text="" Placeholder="Player 9 Name"/>
+                <Entry Grid.Row="6" Grid.Column="1"
+                        x:Name="entPlayer10"
+                        FontSize="16"
+                        Text="" Placeholder="Player 10 Name"/>
+            </Grid>
+
+
+
+            <Button
+                x:Name="btnStartGame"
+                Text="Start Game" 
+                SemanticProperties.Hint="Start Game"
+                Clicked="BtnStartGame_Clicked"
+                HorizontalOptions="Fill" />
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

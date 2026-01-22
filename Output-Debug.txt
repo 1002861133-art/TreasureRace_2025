@@ -1,0 +1,44 @@
+﻿Start debugging Android application ...
+Forwarding debugger port 8872
+Detecting existing process
+> am start -a "android.intent.action.MAIN" -c "android.intent.category.LAUNCHER" -n "com.companyname.treasurerace_2025/crc6446c5da41905d7cd4.MainActivity"
+> Starting: Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] cmp=com.companyname.treasurerace_2025/crc6446c5da41905d7cd4.MainActivity }
+Loaded assembly: /data/data/com.companyname.treasurerace_2025/files/.__override__/System.Private.CoreLib.dll [External]
+Loaded assembly: /data/data/com.companyname.treasurerace_2025/files/.__override__/TreasureRace_2025.dll
+Loaded assembly: /data/data/com.companyname.treasurerace_2025/files/.__override__/Mono.Android.dll [External]
+Loaded assembly: /data/data/com.companyname.treasurerace_2025/files/.__override__/System.Runtime.dll [External]
+Loaded assembly: /data/data/com.companyname.treasurerace_2025/files/.__override__/Java.Interop.dll [External]
+Loaded assembly: /data/data/com.companyname.treasurerace_2025/files/.__override__/System.Runtime.InteropServices.dll [External]
+[easurerace_202] Late-enabling -Xcheck:jni
+[easurerace_202] Unknown bits set in runtime_flags: 0x8000
+[Perf] Connecting to perf service.
+[debug-app-helper] Checking if libmonodroid was unpacked to /data/app/com.companyname.treasurerace_2025-As4fZkUGRh0j6RDcCSyzBw==/lib/arm64/libmonodroid.so
+[debug-app-helper] Native libs extracted to /data/app/com.companyname.treasurerace_2025-As4fZkUGRh0j6RDcCSyzBw==/lib/arm64, assuming application/android:extractNativeLibs == true
+[debug-app-helper] Setting up for DSO lookup in app data directories
+[debug-app-helper] Added filesystem DSO lookup location: /data/app/com.companyname.treasurerace_2025-As4fZkUGRh0j6RDcCSyzBw==/lib/arm64
+[debug-app-helper] Using runtime path: /data/app/com.companyname.treasurerace_2025-As4fZkUGRh0j6RDcCSyzBw==/lib/arm64
+[debug-app-helper] checking directory: `/data/user/0/com.companyname.treasurerace_2025/files/.__override__/lib`
+[debug-app-helper] directory does not exist: `/data/user/0/com.companyname.treasurerace_2025/files/.__override__/lib`
+[debug-app-helper] Checking whether Mono runtime exists at: /data/user/0/com.companyname.treasurerace_2025/files/.__override__/libmonosgen-2.0.so
+[debug-app-helper] Checking whether Mono runtime exists at: /data/app/com.companyname.treasurerace_2025-As4fZkUGRh0j6RDcCSyzBw==/lib/arm64/libmonosgen-2.0.so
+[debug-app-helper] Mono runtime found at: /data/app/com.companyname.treasurerace_2025-As4fZkUGRh0j6RDcCSyzBw==/lib/arm64/libmonosgen-2.0.so
+[easurerace_202] Attempt to remove non-JNI local reference, dumping thread
+[DOTNET] JNI_OnLoad: JNI_OnLoad in pal_jni.c
+[DOTNET] GetOptionalClassGRef: optional class com/android/org/conscrypt/OpenSSLEngineImpl was not found
+[monodroid] Creating public update directory: `/data/user/0/com.companyname.treasurerace_2025/files/.__override__`
+[easurerace_202] Attempt to remove non-JNI local reference, dumping thread
+[monodroid-debug] Trying to initialize the debugger with options: --debugger-agent=transport=dt_socket,loglevel=0,address=127.0.0.1:8872,server=y,embedding=1,timeout=1690706123
+[monodroid-assembly] open_from_bundles: failed to load assembly TreasureRace_2025.dll
+[monodroid-gc] GREF GC Threshold: 46080
+[monodroid-assembly] open_from_bundles: failed to load assembly Mono.Android.dll
+[monodroid-assembly] open_from_bundles: failed to load assembly System.Runtime.dll
+[monodroid-assembly] open_from_bundles: failed to load assembly Java.Interop.dll
+[monodroid-assembly] open_from_bundles: failed to load assembly System.Runtime.InteropServices.dll
+Resolved pending breakpoint for 'Android.Runtime.JNIEnvInit.RegisterJniNatives(System.IntPtr, System.Int32, System.IntPtr, System.IntPtr, System.Int32)' to /Users/runner/work/1/s/xamarin-android/src/Mono.Android/Android.Runtime/JNIEnvInit.cs:57 [0x00000].
+[monodroid-assembly] open_from_bundles: failed to load assembly System.Collections.dll
+Loaded assembly: /data/data/com.companyname.treasurerace_2025/files/.__override__/System.Collections.dll [External]
+[monodroid-assembly] open_from_bundles: failed to load assembly Mono.Android.Runtime.dll
+Loaded assembly: /data/data/com.companyname.treasurerace_2025/files/.__override__/Mono.Android.Runtime.dll [External]
+[monodroid-assembly] open_from_bundles: failed to load assembly System.Threading.dll
+Loaded assembly: /data/data/com.companyname.treasurerace_2025/files/.__override__/System.Threading.dll [External]
+[libc] Fatal signal 11 (SIGSEGV), code 1 (SEGV_MAPERR), fault addr 0xfffffffff0ca6eb0 in tid 7381 (easurerace_2025), pid 7381 (easurerace_2025)

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TreasureRace_2025.MissionsPage"
+             Title="MissionsPage">
+    <VerticalStackLayout
+             Padding="20,0"
+             Spacing="20">
+        <HorizontalStackLayout HorizontalOptions="Fill" BackgroundColor="LightGray" Padding="10">
+            <Label 
+        TextColor="black"
+           FontSize="20"
+           Text="Your Points: " />
+            <Label x:Name="lblPoints"
+           TextColor="black"
+           HorizontalOptions="End"
+           HorizontalTextAlignment="End"
+           FontSize="20"
+           Text="0" />
+
+        </HorizontalStackLayout>
+
+        <Label Grid.Row="1" Grid.Column="1"
+               BackgroundColor="DarkOliveGreen"
+                   x:Name="lblMsg"
+                   FontSize="16"
+                   Text="Welcome to the game, Select a mission and answer the correct answer... Good Luck."
+                   TextColor="white"
+                   Padding="10"
+               />
+        <Border Padding="20" StrokeThickness="1" Stroke="DarkBlue">
+            <Grid RowDefinitions="*,*,*,*,*,*,*"  ColumnDefinitions="*,*" >
+                <Label Grid.Row="0" Grid.Column="0"
+                   FontSize="16"
+                   Text="Type Mission Number" 
+                   VerticalOptions="End"
+                       HeightRequest="30"
+                   />
+                <Entry Keyboard="Numeric" Grid.Row="0" Grid.Column="1"
+                           x:Name="entMissionNum"
+                           FontSize="16"
+                           Text="" Placeholder="Number"/>
+                <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                    x:Name="btnCheckMission"
+                    Text="Check Mission" 
+                    SemanticProperties.Hint="Check Answer"
+                    Clicked="BtnCheckMission_Clicked"
+                    HorizontalOptions="Fill" 
+                     />
+
+
+                        <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Padding="0,10,0,0"
+                   x:Name="lblMissionPlace"
+                   FontSize="20"
+                   Text=""
+                   TextColor="Purple"
+                   HorizontalTextAlignment="Center"
+                   />
+                        <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
+                   x:Name="lblMissionName"
+                   FontSize="35"
+                   TextColor="Purple"
+                   HorizontalTextAlignment="Center"
+                   Text="" />
+                        <!--  תשובה  -->
+                        <Label Grid.Row="5" Grid.Column="0"
+                   FontSize="16"
+                   Text="Your Answer:" 
+                   HeightRequest="30"
+                    VerticalOptions="End"/>
+                        <Entry Grid.Row="5" Grid.Column="1"
+                   x:Name="entAnswer"
+                   FontSize="16"
+                   Text="" Placeholder="Answer"/>
+                <Button  Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2"
+                     x:Name="btnCheckAnswer"
+                     Text="Check Answer" 
+                     SemanticProperties.Hint="Check Answer"
+                     Clicked="BtnCheckAnswer_Clicked"
+                     HorizontalOptions="Fill"
+                         />
+            </Grid>
+    
+        </Border>
+
+
+        
+
+        <!--בדיקת התשובה וחישוב ניקוד-->
+       
+
+        <HorizontalStackLayout HorizontalOptions="FillAndExpand">
+            <Button
+                    x:Name="btnNextMission"
+                    Text="New Mission"
+                    BackgroundColor="Purple"    
+                    SemanticProperties.Hint="Next Mission"
+                    Clicked="BtnNextMission_Clicked"
+                    HorizontalOptions="CenterAndExpand" />
+            <Button
+                    x:Name="btnEndGame"
+                    Text="End Game" 
+                    SemanticProperties.Hint="End Game"
+                    Clicked="BtnEndGame_Clicked"
+                    TextColor="Purple"
+                    BackgroundColor="White"
+                    HorizontalOptions="CenterAndExpand" />
+        </HorizontalStackLayout>
+       
+    </VerticalStackLayout>
+</ContentPage>
