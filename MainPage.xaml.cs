@@ -16,6 +16,12 @@ namespace TreasureRace_2025
         }
         private void BtnStartGame_Clicked(object sender, EventArgs e)
         {
+            int groupNum = int.Parse(entGroupNumber.Text);
+            if (groupNum <= 0 || groupNum > 20)
+            {
+                DisplayAlert("Error", "Group number 1-20", "Close");
+                return;
+            }
             int numOfPlayers = 0;
             players[0] = entPlayer1.Text;
             players[1] = entPlayer2.Text;

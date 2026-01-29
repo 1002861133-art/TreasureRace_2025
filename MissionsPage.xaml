@@ -24,7 +24,7 @@
                BackgroundColor="DarkOliveGreen"
                    x:Name="lblMsg"
                    FontSize="16"
-                   Text="Welcome to the game, Select a mission and answer the correct answer... Good Luck."
+                   Text="Welcome to the game, In each room (mission), You will find a task ... Good Luck."
                    TextColor="white"
                    Padding="10"
                />
@@ -66,19 +66,12 @@
                      HorizontalOptions="Fill"
                          />
             </Grid>
-
         </Border>
-
-
-
-
         <!--בדיקת התשובה וחישוב ניקוד-->
-
-
         <HorizontalStackLayout HorizontalOptions="FillAndExpand">
             <Button
                     x:Name="btnNextMission"
-                    Text="New Mission"
+                    Text="Next"
                     BackgroundColor="Purple"    
                     SemanticProperties.Hint="Next Mission"
                     Clicked="BtnNextMission_Clicked"

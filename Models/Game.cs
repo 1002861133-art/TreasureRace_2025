@@ -55,7 +55,7 @@
 
         public bool IsCompleted()
         {
-            return GetIndex() == GetMissionCount();
+            return GetIndex() == GetMissionCount() - 1;
         }
 
         public Mission GetCurrentMission()

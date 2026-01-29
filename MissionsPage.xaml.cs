@@ -25,121 +25,64 @@ public partial class MissionsPage : ContentPage
     private void BtnCheckAnswer_Clicked(object sender, EventArgs e)
     {
         int missionNumber = MainPage.myGame.GetIndex();
-        if (mission != null && helper.MissionNotDone(missionNumber))
+
+        if (MainPage.myGame.IsCompleted() == true)
         {
-            if (entAnswer.Text == mission.GetGoodAnswer())
-            {
-                MainPage.myGame.missionsDone.Insert(missionNumber);
-                MainPage.myGame.AddPoints(points);
-                lblPoints.Text = MainPage.myGame.GetTotalPoints().ToString();
-                btnCheckAnswer.Text = "Check Answer";
-                ShowMsg("Correct Answer", true);
-                CleanAllFields();
-                if (MainPage.myGame.IsCompleted() == true)
-                {
-                    Shell.Current.GoToAsync("//EndGamePage");
-                    return;
-                }
-
-                MainPage.myGame.MoveToNextMissionIndex();
-                this.mission = MainPage.myGame.GetCurrentMission();
-                points = mission.GetPoint();
-                lblMissionPlace.Text = mission.GetPlace() + " (" + mission.GetPoint() + " points)";
-                lblMissionName.Text = mission.GetName();
-            }
-            else
-            {
-                points /= 2;
-                if (points == 0)
-                {
-                    if (MainPage.myGame.IsCompleted() == true)
-                    {
-                        Shell.Current.GoToAsync("//EndGamePage");
-                        return;
-                    }
-
-                    MainPage.myGame.MoveToNextMissionIndex();
-                    this.mission = MainPage.myGame.GetCurrentMission();
-                    points = mission.GetPoint();
-                    lblMissionPlace.Text = mission.GetPlace() + " (" + mission.GetPoint() + " points)";
-                    lblMissionName.Text = mission.GetName();
-                    btnCheckAnswer.IsEnabled = true;
-                    entAnswer.IsEnabled = true;
-                    btnCheckAnswer.Text = "Check Answer";
-
-                    return;
-                }
-
-               
-                mission.SetPoint(points);
-                lblMissionPlace.Text = mission.GetPlace() + " (" + points + " points)";
-                btnCheckAnswer.Text = "Recheck Anwser for half the points (" + points.ToString() + ")";
-                ShowMsg("Wrong Answer", false);
-                btnCheckAnswer.IsEnabled = true;
-                entAnswer.IsEnabled = true;
-            }
+            Shell.Current.GoToAsync("//EndGamePage");
+            return;
         }
-        else
+
+        if (points <= 1)
+        {
+            CleanAllFields();
+            btnCheckAnswer.Text = "No More tries";
+            btnCheckAnswer.IsEnabled = false;
+            ShowMsg("No more tries, Please go to the next question", false);
+            return;
+        }
+
+        if (mission == null || helper.MissionNotDone(missionNumber) == false)
         {
             ShowMsg("Mission already done", false);
-            btnCheckAnswer.IsEnabled = false;
-            entAnswer.IsEnabled = false;
+            return;
         }
-    }
-   
-    /*
-    private void BtnCheckMission_Clicked(object sender, EventArgs e)
-    {
-        ShowMsg("", true);
-        entAnswer.Text = "";
-        btnCheckAnswer.Text = "Check Answer";
-        if (!helper.IsNumeric(entMissionNum.Text.ToString()))
-        {
-            entMissionNum.Text = "";
-            ShowMsg("only numeric 1 - 20!", false);
-        }
-        else if (int.Parse(entMissionNum.Text.ToString()) < 1 || int.Parse(entMissionNum.Text.ToString()) > 20)
-        {
-            entMissionNum.Text = "";
-            ShowMsg("only numeric 1 - 20!", false);
-        }
-        else
-        {
-            // צריך לבדוק האם המשימה לא בוצעה כבר
-            if (helper.MissionNotDone(int.Parse(entMissionNum.Text.ToString())))
-            {
-                btnCheckAnswer.IsEnabled = true;
-                entAnswer.IsEnabled = true;
 
-                // bring the next mission
-                if (MainPage.myGame.IsCompleted())
-                {
-                    ShowMsg("Game over.", false);
-                    return;
-                }
-
-                MainPage.myGame.MoveToNextMissionIndex();
-                mission = MainPage.myGame.GetCurrentMission();
-                points = mission.GetPoint();
-                lblMissionPlace.Text = mission.GetPlace() + " (" + mission.GetPoint() + " points)";
-                lblMissionName.Text = mission.GetName();
-            }
-            else
-            {
-                entMissionNum.Text = "";
-                ShowMsg("The mission number is already done.", false);
-            }
+        bool isGoodAnswer = entAnswer.Text == mission.GetGoodAnswer();
+        if (!isGoodAnswer)
+        {
+            points /= 2;
+            mission.SetPoint(points);
+            lblMissionPlace.Text = mission.GetPlace() + " (" + points + " points)";
+            btnCheckAnswer.Text = "Recheck Anwser for half the points (" + points.ToString() + ")";
+            btnCheckAnswer.IsEnabled = true;
+            ShowMsg("Wrong Answer", false);
+            return;
         }
+
+        MainPage.myGame.AddPoints(points);
+        MainPage.myGame.missionsDone.Insert(missionNumber);
+        lblPoints.Text = MainPage.myGame.GetTotalPoints().ToString();
+        btnCheckAnswer.Text = "Very Good!, Go to next mission";
+        btnCheckAnswer.IsEnabled = false;
+        ShowMsg("Correct Answer, Click on Next", true);
+
     }
-    */
+
 
     private void BtnNextMission_Clicked(object sender, EventArgs e)
     {
+        if (MainPage.myGame.IsCompleted() == true)
+        {
+            Shell.Current.GoToAsync("//EndGamePage");
+            return;
+        }
 
-        ShowMsg("", true);
         CleanAllFields();
         MainPage.myGame.MoveToNextMissionIndex();
         this.mission = MainPage.myGame.GetCurrentMission();
+        btnCheckAnswer.IsEnabled = true;
+        ShowMsg("", true);
+
         points = mission.GetPoint();
         lblMissionPlace.Text = mission.GetPlace() + " (" + mission.GetPoint() + " points)";
         lblMissionName.Text = mission.GetName();
@@ -149,6 +92,7 @@ public partial class MissionsPage : ContentPage
         lblMissionPlace.Text = "";
         lblMissionName.Text = "";
         entAnswer.Text = "";
+        btnCheckAnswer.Text = "Check Answer";
     }
     private void BtnEndGame_Clicked(object sender, EventArgs e)
     {
@@ -163,6 +107,7 @@ public partial class MissionsPage : ContentPage
         }
         else
         {
+            lblMsg.IsVisible = true;
             if (isPositiveMessage)
             {
                 lblMsg.Background = new SolidColorBrush(Colors.Green);
@@ -177,5 +122,4 @@ public partial class MissionsPage : ContentPage
         }
 
     }
-
 }
