@@ -1,66 +1,93 @@
 
 using TreasureRace_2025.Models;
-
-
 namespace TreasureRace_2025;
 
 public partial class MissionsPage : ContentPage
 {
-    public AllMissions allMissions;
-    public Mission[] missionsArr;
     public Mission? mission;
     public Helper helper;
     public int points;
     private bool isMissionShown = false;
 
+
     public MissionsPage()
     {
         InitializeComponent();
-        allMissions = new AllMissions();
-        missionsArr = allMissions.GetMissions();
-        helper = new Helper();
-        btnCheckAnswer.IsEnabled = false;
-        entAnswer.IsEnabled = false;
+        this.helper = new Helper();
+        this.btnCheckAnswer.IsEnabled = true;
+        this.entAnswer.IsEnabled = true;
+        this.mission = MainPage.myGame.GetCurrentMission();
+        points = mission.GetPoint();
+        lblMissionPlace.Text = mission.GetPlace() + " (" + mission.GetPoint() + " points)";
+        lblMissionName.Text = mission.GetName();
     }
 
     private void BtnCheckAnswer_Clicked(object sender, EventArgs e)
     {
-        if (mission != null && helper.MissionNotDone(int.Parse(entMissionNum.Text.ToString())))
+        int missionNumber = MainPage.myGame.GetIndex();
+        if (mission != null && helper.MissionNotDone(missionNumber))
         {
             if (entAnswer.Text == mission.GetGoodAnswer())
             {
-                MainPage.myGame.missionsDone.Insert(int.Parse(entMissionNum.Text.ToString()));
+                MainPage.myGame.missionsDone.Insert(missionNumber);
                 MainPage.myGame.AddPoints(points);
                 lblPoints.Text = MainPage.myGame.GetTotalPoints().ToString();
                 btnCheckAnswer.Text = "Check Answer";
                 ShowMsg("Correct Answer", true);
                 CleanAllFields();
-                btnCheckAnswer.IsEnabled = false;
-                entAnswer.IsEnabled = false;
-            } else
+                if (MainPage.myGame.IsCompleted() == true)
+                {
+                    Shell.Current.GoToAsync("//EndGamePage");
+                    return;
+                }
+
+                MainPage.myGame.MoveToNextMissionIndex();
+                this.mission = MainPage.myGame.GetCurrentMission();
+                points = mission.GetPoint();
+                lblMissionPlace.Text = mission.GetPlace() + " (" + mission.GetPoint() + " points)";
+                lblMissionName.Text = mission.GetName();
+            }
+            else
             {
                 points /= 2;
+                if (points == 0)
+                {
+                    if (MainPage.myGame.IsCompleted() == true)
+                    {
+                        Shell.Current.GoToAsync("//EndGamePage");
+                        return;
+                    }
+
+                    MainPage.myGame.MoveToNextMissionIndex();
+                    this.mission = MainPage.myGame.GetCurrentMission();
+                    points = mission.GetPoint();
+                    lblMissionPlace.Text = mission.GetPlace() + " (" + mission.GetPoint() + " points)";
+                    lblMissionName.Text = mission.GetName();
+                    btnCheckAnswer.IsEnabled = true;
+                    entAnswer.IsEnabled = true;
+                    btnCheckAnswer.Text = "Check Answer";
+
+                    return;
+                }
+
+               
                 mission.SetPoint(points);
                 lblMissionPlace.Text = mission.GetPlace() + " (" + points + " points)";
-                btnCheckAnswer.Text = "Recheck Anwser for half the points ("+ points.ToString()+")";
+                btnCheckAnswer.Text = "Recheck Anwser for half the points (" + points.ToString() + ")";
                 ShowMsg("Wrong Answer", false);
                 btnCheckAnswer.IsEnabled = true;
                 entAnswer.IsEnabled = true;
             }
-                
-
-           
-        } else
+        }
+        else
         {
             ShowMsg("Mission already done", false);
             btnCheckAnswer.IsEnabled = false;
             entAnswer.IsEnabled = false;
         }
-
     }
-    //  clear   להוסיף כפתור 
-    //entMissionNum.Text="";  : לשדה
-
+   
+    /*
     private void BtnCheckMission_Clicked(object sender, EventArgs e)
     {
         ShowMsg("", true);
@@ -83,10 +110,17 @@ public partial class MissionsPage : ContentPage
             {
                 btnCheckAnswer.IsEnabled = true;
                 entAnswer.IsEnabled = true;
-                // bring the chosen mission
-                mission = missionsArr[int.Parse(entMissionNum.Text.ToString()) - 1];
+
+                // bring the next mission
+                if (MainPage.myGame.IsCompleted())
+                {
+                    ShowMsg("Game over.", false);
+                    return;
+                }
+
+                MainPage.myGame.MoveToNextMissionIndex();
+                mission = MainPage.myGame.GetCurrentMission();
                 points = mission.GetPoint();
-                //MainPage.myGame.missionsDone.Insert(int.Parse(entMissionNum.Text.ToString()));
                 lblMissionPlace.Text = mission.GetPlace() + " (" + mission.GetPoint() + " points)";
                 lblMissionName.Text = mission.GetName();
             }
@@ -97,26 +131,24 @@ public partial class MissionsPage : ContentPage
             }
         }
     }
-    //  clear   להוסיף כפתור 
-    //entMissionNum.Text="";  : לשדה
-    // או להוסיף שדה להודעת שגיאה
+    */
 
     private void BtnNextMission_Clicked(object sender, EventArgs e)
     {
 
         ShowMsg("", true);
         CleanAllFields();
-        btnCheckAnswer.IsEnabled = false;
-        entAnswer.IsEnabled = false;
+        MainPage.myGame.MoveToNextMissionIndex();
+        this.mission = MainPage.myGame.GetCurrentMission();
+        points = mission.GetPoint();
+        lblMissionPlace.Text = mission.GetPlace() + " (" + mission.GetPoint() + " points)";
+        lblMissionName.Text = mission.GetName();
     }
     private void CleanAllFields()
     {
-       
-        entMissionNum.Text = "";
         lblMissionPlace.Text = "";
         lblMissionName.Text = "";
         entAnswer.Text = "";
-
     }
     private void BtnEndGame_Clicked(object sender, EventArgs e)
     {
@@ -124,23 +156,26 @@ public partial class MissionsPage : ContentPage
     }
     private void ShowMsg(String msg, bool isPositiveMessage)
     {
-        if (msg.Length==0)
+        if (msg.Length == 0)
         {
             lblMsg.IsVisible = false;
             lblMsg.Text = "";
-        } else
+        }
+        else
         {
-            if (isPositiveMessage) {
+            if (isPositiveMessage)
+            {
                 lblMsg.Background = new SolidColorBrush(Colors.Green);
-            } else
+            }
+            else
             {
                 lblMsg.Background = new SolidColorBrush(Colors.Red);
             }
-            
+
             lblMsg.IsEnabled = true;
             lblMsg.Text = msg;
         }
-       
+
     }
 
 }

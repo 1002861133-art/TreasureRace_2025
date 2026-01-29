@@ -30,45 +30,31 @@
                />
         <Border Padding="20" StrokeThickness="1" Stroke="DarkBlue">
             <Grid RowDefinitions="*,*,*,*,*,*,*"  ColumnDefinitions="*,*" >
-                <Label Grid.Row="0" Grid.Column="0"
-                   FontSize="16"
-                   Text="Type Mission Number" 
-                   VerticalOptions="End"
-                       HeightRequest="30"
-                   />
-                <Entry Keyboard="Numeric" Grid.Row="0" Grid.Column="1"
-                           x:Name="entMissionNum"
+                <Label  Grid.Row="0" Grid.Column="1"
+                           x:Name="lblMissionNum"
                            FontSize="16"
-                           Text="" Placeholder="Number"/>
-                <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
-                    x:Name="btnCheckMission"
-                    Text="Check Mission" 
-                    SemanticProperties.Hint="Check Answer"
-                    Clicked="BtnCheckMission_Clicked"
-                    HorizontalOptions="Fill" 
-                     />
+                           />
 
-
-                        <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Padding="0,10,0,0"
+                <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Padding="0,10,0,0"
                    x:Name="lblMissionPlace"
                    FontSize="20"
                    Text=""
                    TextColor="Purple"
                    HorizontalTextAlignment="Center"
                    />
-                        <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
+                <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
                    x:Name="lblMissionName"
                    FontSize="35"
                    TextColor="Purple"
                    HorizontalTextAlignment="Center"
                    Text="" />
-                        <!--  תשובה  -->
-                        <Label Grid.Row="5" Grid.Column="0"
+                <!--  תשובה  -->
+                <Label Grid.Row="5" Grid.Column="0"
                    FontSize="16"
                    Text="Your Answer:" 
                    HeightRequest="30"
                     VerticalOptions="End"/>
-                        <Entry Grid.Row="5" Grid.Column="1"
+                <Entry Grid.Row="5" Grid.Column="1"
                    x:Name="entAnswer"
                    FontSize="16"
                    Text="" Placeholder="Answer"/>
@@ -80,14 +66,14 @@
                      HorizontalOptions="Fill"
                          />
             </Grid>
-    
+
         </Border>
 
 
-        
+
 
         <!--בדיקת התשובה וחישוב ניקוד-->
-       
+
 
         <HorizontalStackLayout HorizontalOptions="FillAndExpand">
             <Button
@@ -106,6 +92,6 @@
                     BackgroundColor="White"
                     HorizontalOptions="CenterAndExpand" />
         </HorizontalStackLayout>
-       
+
     </VerticalStackLayout>
 </ContentPage>

@@ -8,6 +8,8 @@ namespace TreasureRace_2025
         public static Group? group = null;
         public static int points = 0;
         public string[] players = new string[10];
+        public Mission[] missions = new Mission[20];
+
         public MainPage()
         {
             InitializeComponent();
