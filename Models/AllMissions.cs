@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TreasureRace_2025.Models
+﻿namespace TreasureRace_2025.Models
 {
     public class AllMissions
     {
@@ -14,11 +7,11 @@ namespace TreasureRace_2025.Models
         public AllMissions()
         {
             this.missions = new Mission[20];
-            missions[0] = new Mission(1, "What is the Code?", "Mission_1", "613", 16);
+            missions[0] = new Mission(1, "3 Chemestry Missions", "Chemestry lavoratory", "123", 30);
             missions[1] = new Mission(2, "School Bus", "Mission_2", "9", 16);
-            missions[2] = new Mission(3, "Result for num=5183", "Mission_3", "3518", 20);
-            missions[3] = new Mission(4, "Calculate", "Mission_4", "38", 10);
-            missions[4] = new Mission(5, "How many women", "Mission_5", "3", 10);
+            missions[2] = new Mission(3, "Biotechnologia - Atom", "biotechnologia lavoratory", "3", 20);
+            missions[3] = new Mission(4, "Biotechnologia - lemon", "biotechnologia lavoratory", "19", 20);
+            missions[4] = new Mission(5, "Biology_1", "Go to Photosynthesis room", "ביולוגיה", 30);
             missions[5] = new Mission(6, "98% Mistake", "Mission_6", "15", 12);
             missions[6] = new Mission(7, "Genious only", "Mission_7", "26", 10);
             missions[7] = new Mission(8, "Result with num=8", "Mission_8", "40320", 20);

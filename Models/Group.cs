@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TreasureRace_2025.Models
+﻿namespace TreasureRace_2025.Models
 {
     public class Group
     {
