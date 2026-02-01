@@ -1,101 +1,115 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TreasureRace_2025.MissionsPage"
-             Title="MissionsPage">
-    <VerticalStackLayout  Padding="20,0"  Spacing="20">
-        <Image
-               Source="logo_school.jpg"
-               HeightRequest="50"
-               Aspect="AspectFit"
-               SemanticProperties.Description="dot net bot in a race car number eight" />
-        
-        <HorizontalStackLayout HorizontalOptions="Fill" BackgroundColor="Moccasin" Padding="10">
-            <Label        
-                 TextColor="black"
-                 FontSize="20"
-                 Text="Time Left: " />
+             Title="Missions"
+             BackgroundColor="#F5F7FA">
 
-            <Label x:Name="lblTimeLeft"
-            TextColor="black"
-            HorizontalOptions="End"
-            HorizontalTextAlignment="End"
-            FontSize="20"
-            Text="20:00" />
-        </HorizontalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
 
-        <HorizontalStackLayout HorizontalOptions="Fill" BackgroundColor="LightGray" Padding="10">
-            <Label        
-                TextColor="black"
-                FontSize="20"
-                Text="Your Points: " />
+            <!-- Logo -->
+            <Image Source="logo_school.jpg"
+                   HeightRequest="80"
+                   Aspect="AspectFit"
+                   HorizontalOptions="Center"
+                   SemanticProperties.Description="School Logo" />
 
-            <Label x:Name="lblPoints"
-                   TextColor="black"
-                   HorizontalOptions="End"
-                   HorizontalTextAlignment="End"
-                   FontSize="20"
-                   Text="0" />
-        </HorizontalStackLayout>
-        <Label BackgroundColor="DarkOliveGreen" 
-               x:Name="lblMsg"  
-               FontSize="16" 
-               Text="Welcome to the game, In each room (mission), You will find a task ... Good Luck." 
-               TextColor="white"                  
-               Padding="10"    />
-        <Border Padding="20" StrokeThickness="1" Stroke="DarkBlue">
-            <Grid RowDefinitions="*,*,*,*,*,*,*"  ColumnDefinitions="*,*" >
-                <Label  Grid.Row="0" Grid.Column="1"
-                           x:Name="lblMissionNum"
-                           FontSize="16" />
-                <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Padding="0,10,0,0"
-                   x:Name="lblMissionPlace"
-                   FontSize="20"
-                   Text=""
-                   TextColor="Purple"
-                   HorizontalTextAlignment="Center" />
-                <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
-                   x:Name="lblMissionName"
-                   FontSize="35"
-                   TextColor="Purple"
-                   HorizontalTextAlignment="Center"
-                   Text="" />
-                <!--  תשובה  -->
-                <Label Grid.Row="5" Grid.Column="0"
-                   FontSize="16"
-                   Text="Your Answer:" 
-                   HeightRequest="30"
-                    VerticalOptions="End"/>
-                <Entry Grid.Row="5" Grid.Column="1"
-                   x:Name="entAnswer"
-                   FontSize="16"
-                   Text="" Placeholder="Answer"/>
-                <Button  Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2"
-                     x:Name="btnCheckAnswer"
-                     Text="Check Answer" 
-                     SemanticProperties.Hint="Check Answer"
-                     Clicked="BtnCheckAnswer_Clicked"
-                     HorizontalOptions="Fill"  />
-            </Grid>
-        </Border>
-        <!--בדיקת התשובה וחישוב ניקוד-->
-        <HorizontalStackLayout HorizontalOptions="FillAndExpand">
-            <Button  
-                    x:Name="btnNextMission"
-                    Text="Next"
-                    BackgroundColor="Purple"    
-                    SemanticProperties.Hint="Next Mission"
-                    Clicked="BtnNextMission_Clicked"
-                    HorizontalOptions="CenterAndExpand" />
-            <Button
-                    x:Name="btnEndGame"
-                    Text="End Game" 
-                    SemanticProperties.Hint="End Game"
-                    Clicked="BtnEndGame_Clicked"
-                    TextColor="Purple"
-                    BackgroundColor="White"
-                    HorizontalOptions="CenterAndExpand" />
-        </HorizontalStackLayout>
-    </VerticalStackLayout>
+            <!-- Status Cards: Time Left & Points -->
+            <HorizontalStackLayout Spacing="16" HorizontalOptions="CenterAndExpand" >
+
+                <Frame BackgroundColor="#FFE4B5" CornerRadius="12" Padding="12" HasShadow="True" HorizontalOptions="FillAndExpand">
+                    <HorizontalStackLayout HorizontalOptions="FillAndExpand">
+                        <Label Text="Time Left:" FontSize="18" FontAttributes="Bold" TextColor="#1F2937"/>
+                        <Label x:Name="lblTimeLeft" Text="20:00" FontSize="18" TextColor="#1F2937" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End"/>
+                    </HorizontalStackLayout>
+                </Frame>
+
+                <Frame BackgroundColor="#D3D3D3" CornerRadius="12" Padding="12" HasShadow="True" HorizontalOptions="FillAndExpand">
+                    <HorizontalStackLayout HorizontalOptions="FillAndExpand">
+                        <Label Text="Your Points:" FontSize="18" FontAttributes="Bold" TextColor="#1F2937"/>
+                        <Label x:Name="lblPoints" Text="0" FontSize="18" TextColor="#1F2937" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End"/>
+                    </HorizontalStackLayout>
+                </Frame>
+
+            </HorizontalStackLayout>
+
+            <!-- Message / Instructions -->
+            <Frame BackgroundColor="#556B2F" CornerRadius="12" Padding="12" HasShadow="True">
+                <Label x:Name="lblMsg"
+                       Text="Welcome to the game! In each mission, you will find a task... Good Luck!"
+                       FontSize="16"
+                       TextColor="White"
+                       HorizontalTextAlignment="Center"
+                       LineBreakMode="WordWrap"/>
+            </Frame>
+
+            <!-- Mission Card -->
+            <Frame BackgroundColor="White" CornerRadius="20" Padding="16" HasShadow="True">
+                <VerticalStackLayout Spacing="16">
+
+                    <!-- Mission Number -->
+                    <Label x:Name="lblMissionNum"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="#374151"
+                           HorizontalTextAlignment="Center"/>
+
+                    <!-- Mission Place -->
+                    <Label x:Name="lblMissionPlace"
+                           FontSize="22"
+                           TextColor="#6B21A8"
+                           HorizontalTextAlignment="Center"
+                           FontAttributes="Bold"/>
+
+                    <!-- Mission Name -->
+                    <Label x:Name="lblMissionName"
+                           FontSize="32"
+                           TextColor="#6B21A8"
+                           HorizontalTextAlignment="Center"
+                           FontAttributes="Bold"/>
+
+                    <!-- Answer Input -->
+                    <HorizontalStackLayout Spacing="12" VerticalOptions="Center">
+                        <Label Text="Your Answer:" FontSize="16" VerticalTextAlignment="Center"/>
+                        <Entry x:Name="entAnswer" FontSize="16" Placeholder="Answer" HorizontalOptions="FillAndExpand"/>
+                    </HorizontalStackLayout>
+
+                    <!-- Check Answer Button -->
+                    <Button x:Name="btnCheckAnswer"
+                            Text="Check Answer"
+                            FontSize="18"
+                            BackgroundColor="#2563EB"
+                            TextColor="White"
+                            CornerRadius="12"
+                            Clicked="BtnCheckAnswer_Clicked"
+                            HorizontalOptions="FillAndExpand"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Navigation Buttons -->
+            <HorizontalStackLayout Spacing="16" HorizontalOptions="CenterAndExpand">
+                <Button x:Name="btnNextMission"
+                        Text="Next"
+                        FontSize="18"
+                        BackgroundColor="#6B21A8"
+                        TextColor="White"
+                        CornerRadius="12"
+                        Clicked="BtnNextMission_Clicked"
+                        HorizontalOptions="FillAndExpand"/>
+
+                <Button x:Name="btnEndGame"
+                        Text="End Game"
+                        FontSize="18"
+                        BackgroundColor="White"
+                        TextColor="#6B21A8"
+                        BorderColor="#6B21A8"
+                        BorderWidth="2"
+                        CornerRadius="12"
+                        Clicked="BtnEndGame_Clicked"
+                        HorizontalOptions="FillAndExpand"/>
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

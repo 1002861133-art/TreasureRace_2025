@@ -1,98 +1,101 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TreasureRace_2025.MainPage">
+             x:Class="TreasureRace_2025.MainPage"
+             BackgroundColor="#F5F7FA"
+             Title="Treasure Race">
 
     <ScrollView>
-        <VerticalStackLayout
-            Padding="20,0"
-            Spacing="20">
-            <Image
-                  Source="logo_school.jpg"
-                  HeightRequest="50"
-                  Aspect="AspectFit"
-                  SemanticProperties.Description="dot net bot in a race car number eight" />
-            <Image
-                Source="dotnet_bot.png"
-                HeightRequest="50"
-                Aspect="AspectFit"
-                SemanticProperties.Description="dot net bot in a race car number eight" />
+        <VerticalStackLayout Padding="20" Spacing="24" VerticalOptions="Center">
 
-            <Label
-                Text="Treasure Race"
-                Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level2" />
+            <!-- Logos -->
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="20">
+                <Image Source="logo_school.jpg"
+                       HeightRequest="80"
+                       Aspect="AspectFit"
+                       SemanticProperties.Description="School Logo" />
+                <Image Source="dotnet_bot.png"
+                       HeightRequest="80"
+                       Aspect="AspectFit"
+                       SemanticProperties.Description=".NET Bot Logo" />
+            </HorizontalStackLayout>
 
+            <!-- Title -->
+            <Label Text="Treasure Race"
+                   FontSize="32"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"
+                   TextColor="#1F2937"
+                   SemanticProperties.HeadingLevel="Level1" />
 
-            <Grid
-                RowDefinitions="*,*,*,*,*,*,*"
-                ColumnDefinitions="*,*"
-                >
-                <Entry Grid.Row="0" Grid.Column="0"
-                       x:Name="entGroupName"
-                       FontSize="16"
-                       Text="" Placeholder="Group Name"
-                />
-                <Entry Grid.Row="0" Grid.Column="1"
-                       Keyboard="Numeric"
-                       x:Name="entGroupNumber"
-                       FontSize="16"
-                       Text="" Placeholder="Group Number"/>
-                <Label Grid.Row="1" Grid.Column="0"
-                       x:Name="lblPlayersList"
-                       FontSize="16" FontAttributes="Bold"
-                       Text="Players Names:" />
-                <Entry Grid.Row="2" Grid.Column="0"
-                       x:Name="entPlayer1"
-                       FontSize="16"
-                       Text="" Placeholder="Player 1 Name"/>
-                <Entry Grid.Row="2" Grid.Column="1"
-                       x:Name="entPlayer2"
-                       FontSize="16"
-                       Text="" Placeholder="Player 2 Name"/>
-                <Entry Grid.Row="3" Grid.Column="0"
-                       x:Name="entPlayer3"
-                       FontSize="16"
-                       Text="" Placeholder="Player 3 Name"/>
-                <Entry Grid.Row="3" Grid.Column="1"
-                       x:Name="entPlayer4"
-                       FontSize="16"
-                       Text="" Placeholder="Player 4 Name"/>
-                <Entry Grid.Row="4" Grid.Column="0"
-                       x:Name="entPlayer5"
-                       FontSize="16"
-                       Text="" Placeholder="Player 5 Name"/>
-                <Entry Grid.Row="4" Grid.Column="1"
-                       x:Name="entPlayer6"
-                       FontSize="16"
-                       Text="" Placeholder="Player 6 Name"/>
-                <Entry Grid.Row="5" Grid.Column="0"
-                        x:Name="entPlayer7"
-                        FontSize="16"
-                        Text="" Placeholder="Player 7 Name"/>
-                <Entry Grid.Row="5" Grid.Column="1"
-                        x:Name="entPlayer8"
-                        FontSize="16"
-                        Text="" Placeholder="Player 8 Name"/>
-                <Entry Grid.Row="6" Grid.Column="0"
-                        x:Name="entPlayer9"
-                        FontSize="16"
-                        Text="" Placeholder="Player 9 Name"/>
-                <Entry Grid.Row="6" Grid.Column="1"
-                        x:Name="entPlayer10"
-                        FontSize="16"
-                        Text="" Placeholder="Player 10 Name"/>
-            </Grid>
+            <!-- Group Info Card -->
+            <Frame BackgroundColor="White"
+                   CornerRadius="20"
+                   Padding="16"
+                   HasShadow="True"
+                   HorizontalOptions="Fill">
 
+                <VerticalStackLayout Spacing="16">
 
+                    <!-- Group Name / Number -->
+                    <HorizontalStackLayout Spacing="12">
+                        <Entry x:Name="entGroupName"
+                               Placeholder="Group Name"
+                               FontSize="16"
+                               HorizontalOptions="FillAndExpand" />
+                        <Entry x:Name="entGroupNumber"
+                               Placeholder="Group Number"
+                               Keyboard="Numeric"
+                               FontSize="16"
+                               WidthRequest="100" />
+                    </HorizontalStackLayout>
 
-            <Button
-                x:Name="btnStartGame"
-                Text="Start Game" 
-                SemanticProperties.Hint="Start Game"
-                Clicked="BtnStartGame_Clicked"
-                HorizontalOptions="Fill" />
+                    <!-- Players List Label -->
+                    <Label Text="Players Names"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="#374151" />
+
+                    <!-- Players Grid -->
+                    <Grid RowSpacing="12" ColumnSpacing="12">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Player Entries -->
+                        <Entry Grid.Row="0" Grid.Column="0" x:Name="entPlayer1" Placeholder="Player 1 Name" FontSize="16"/>
+                        <Entry Grid.Row="0" Grid.Column="1" x:Name="entPlayer2" Placeholder="Player 2 Name" FontSize="16"/>
+                        <Entry Grid.Row="1" Grid.Column="0" x:Name="entPlayer3" Placeholder="Player 3 Name" FontSize="16"/>
+                        <Entry Grid.Row="1" Grid.Column="1" x:Name="entPlayer4" Placeholder="Player 4 Name" FontSize="16"/>
+                        <Entry Grid.Row="2" Grid.Column="0" x:Name="entPlayer5" Placeholder="Player 5 Name" FontSize="16"/>
+                        <Entry Grid.Row="2" Grid.Column="1" x:Name="entPlayer6" Placeholder="Player 6 Name" FontSize="16"/>
+                        <Entry Grid.Row="3" Grid.Column="0" x:Name="entPlayer7" Placeholder="Player 7 Name" FontSize="16"/>
+                        <Entry Grid.Row="3" Grid.Column="1" x:Name="entPlayer8" Placeholder="Player 8 Name" FontSize="16"/>
+                        <Entry Grid.Row="4" Grid.Column="0" x:Name="entPlayer9" Placeholder="Player 9 Name" FontSize="16"/>
+                        <Entry Grid.Row="4" Grid.Column="1" x:Name="entPlayer10" Placeholder="Player 10 Name" FontSize="16"/>
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Start Game Button -->
+            <Button x:Name="btnStartGame"
+                    Text="Start Game"
+                    FontSize="20"
+                    FontAttributes="Bold"
+                    BackgroundColor="#2563EB"
+                    TextColor="White"
+                    CornerRadius="12"
+                    Clicked="BtnStartGame_Clicked"
+                    HorizontalOptions="Fill" />
+
         </VerticalStackLayout>
     </ScrollView>
-
 </ContentPage>
