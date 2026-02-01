@@ -16,12 +16,25 @@ namespace TreasureRace_2025
         }
         private void BtnStartGame_Clicked(object sender, EventArgs e)
         {
-            int groupNum = int.Parse(entGroupNumber.Text);
+            if (entGroupName.Text == "" || entGroupNumber.Text == "")
+            {
+                DisplayAlert("Error", "Please enter group name and number", "Close");
+                return;
+            }
+
+            if (!int.TryParse(entGroupNumber.Text, out int groupNum))
+            {
+                DisplayAlert("Error", "Group number must be a number", "Close");
+                return;
+            }
+
             if (groupNum <= 0 || groupNum > 20)
             {
                 DisplayAlert("Error", "Group number 1-20", "Close");
                 return;
             }
+
+
             int numOfPlayers = 0;
             players[0] = entPlayer1.Text;
             players[1] = entPlayer2.Text;
@@ -33,6 +46,14 @@ namespace TreasureRace_2025
             players[7] = entPlayer8.Text;
             players[8] = entPlayer9.Text;
             players[9] = entPlayer10.Text;
+
+            if (players.Count(p=> !string.IsNullOrEmpty(p)) < 2)
+            {
+                DisplayAlert("Error", "Please select at least 2 players", "Close");
+                return;
+            }
+
+
             for (int i = 0; i < 10; i++)
             {
                 if (players[i] != "")

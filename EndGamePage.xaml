@@ -66,6 +66,18 @@
                 HorizontalTextAlignment="Center"
                 TextColor="#6B7280" />
 
+            <!-- Exit Button -->
+            <Button
+                    x:Name="btnExitApp"
+                    Text="Exit App"
+                    FontSize="20"
+                    FontAttributes="Bold"
+                    BackgroundColor="#EF4444"
+                    TextColor="White"
+                    CornerRadius="12"
+                    Clicked="BtnExitApp_Clicked"
+                    HorizontalOptions="Fill"/>
+            
         </VerticalStackLayout>
     </ScrollView>
 
