@@ -13,19 +13,22 @@ namespace TreasureRace_2025.Models
         private string missionPlace;//	מיקום מטיפוס מחרוזת.
         private string goodAnswer;//	תשובה נכונה
         private int missionPoint;//	ניקוד
+        private int timeMinutes;//	זמן
 
-        public Mission(int missionCode, string missionName, string missionPlace, string goodAnswer, int missionPoint)
+        public Mission(int missionCode, string missionName, string missionPlace, string goodAnswer, int missionPoint, int timeMinutes)
         {
             this.missionCode = missionCode;
             this.missionName = missionName;
             this.missionPlace = missionPlace;
             this.goodAnswer = goodAnswer;
             this.missionPoint = missionPoint;
+            this.timeMinutes = timeMinutes;
         }
         public int GetCode() { return missionCode; }
         public string GetName() { return missionName; }
         public string GetPlace() { return missionPlace; }
         public string GetGoodAnswer() { return goodAnswer; }
+        public int GetTimeMinutes() { return timeMinutes; }
         public int GetPoint() { return missionPoint; }
         public void SetPoint(int newPoint) { this.missionPoint = newPoint; }
 

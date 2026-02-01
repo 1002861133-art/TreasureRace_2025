@@ -9,6 +9,22 @@ public partial class MissionsPage : ContentPage
     public int points;
     private bool isMissionShown = false;
 
+    private TimeSpan _timeLeft = TimeSpan.FromMinutes(20);
+    private IDispatcherTimer _timer;
+
+    private void OnTimerTick(object? sender, EventArgs e)
+    {
+        if (_timeLeft.TotalSeconds <= 0)
+        {
+            _timer.Stop();
+            lblTimeLeft.Text = "00:00";
+            btnCheckAnswer.IsEnabled = false;
+            return;
+        }
+
+        _timeLeft = _timeLeft.Subtract(TimeSpan.FromSeconds(1));
+        lblTimeLeft.Text = _timeLeft.ToString(@"mm\:ss");
+    }
 
     public MissionsPage()
     {
@@ -20,10 +36,24 @@ public partial class MissionsPage : ContentPage
         points = mission.GetPoint();
         lblMissionPlace.Text = mission.GetPlace() + " (" + mission.GetPoint() + " points)";
         lblMissionName.Text = mission.GetName();
+        _timeLeft = TimeSpan.FromMinutes(mission.GetTimeMinutes());
+
+        lblTimeLeft.Text = _timeLeft.ToString(@"mm\:ss");
+
+        _timer = Dispatcher.CreateTimer();
+        _timer.Interval = TimeSpan.FromSeconds(1);
+        _timer.Tick += OnTimerTick;
+        _timer.Start();
     }
 
     private void BtnCheckAnswer_Clicked(object sender, EventArgs e)
     {
+        if (entAnswer.Text == "")
+        {
+            DisplayAlert("Mission Page", "Please enter an answer","close");
+            return;
+        }
+
         int missionNumber = MainPage.myGame.GetIndex();
 
         if (MainPage.myGame.IsCompleted() == true)
@@ -64,8 +94,8 @@ public partial class MissionsPage : ContentPage
         lblPoints.Text = MainPage.myGame.GetTotalPoints().ToString();
         btnCheckAnswer.Text = "Very Good!, Go to next mission";
         btnCheckAnswer.IsEnabled = false;
+        _timer?.Stop();
         ShowMsg("Correct Answer, Click on Next", true);
-
     }
 
 
@@ -77,11 +107,14 @@ public partial class MissionsPage : ContentPage
             return;
         }
 
+        _timer?.Stop();
         CleanAllFields();
         MainPage.myGame.MoveToNextMissionIndex();
         this.mission = MainPage.myGame.GetCurrentMission();
         btnCheckAnswer.IsEnabled = true;
         ShowMsg("", true);
+        _timeLeft = TimeSpan.FromMinutes(mission.GetTimeMinutes());
+        _timer?.Start();
 
         points = mission.GetPoint();
         lblMissionPlace.Text = mission.GetPlace() + " (" + mission.GetPoint() + " points)";
