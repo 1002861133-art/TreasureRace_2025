@@ -2,35 +2,71 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TreasureRace_2025.EndGamePage"
-             Title="EndGamePage">
-    <VerticalStackLayout>
-        <Image
-           Source="logo_school.jpg"
-           HeightRequest="150"
-           Aspect="AspectFit"
-           SemanticProperties.Description="dot net bot in a race car number eight" />
-        <Label 
-            Text="Thanks you very much for playing Tcherhovsky Lamilion"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" 
-            FontSize="18"/>
-        <Label 
-            Text="הציון של הקבוצה"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" 
-            FontSize="25"/>
+             Title="Game Finished"
+             BackgroundColor="#F5F7FA">
 
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="24"
+            Spacing="24"
+            VerticalOptions="Center">
 
-        <Label 
-            x:Name="lblFinalSAcore"
-            Text=""
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" 
-            FontSize="50"/>
-        
-        <Label 
-    Text="האפליקציה נבנתה על ידי  תלמידי מגמת מחשבים יא, תיכון טשרנחובסקי"
-    VerticalOptions="Center" 
-    HorizontalOptions="Center" />
-    </VerticalStackLayout>
+            <!-- Logo -->
+            <Image
+                Source="logo_school.jpg"
+                HeightRequest="140"
+                Aspect="AspectFit"
+                HorizontalOptions="Center" />
+
+            <!-- Thank you -->
+            <Label
+                Text="Thank you for playing!"
+                FontSize="26"
+                FontAttributes="Bold"
+                HorizontalTextAlignment="Center"
+                TextColor="#1F2937" />
+
+            <Label
+                Text="Tcherhovsky Lamilion Treasure Race"
+                FontSize="16"
+                HorizontalTextAlignment="Center"
+                TextColor="#6B7280" />
+
+            <!-- Score Card -->
+            <Frame
+                BackgroundColor="White"
+                CornerRadius="20"
+                Padding="24"
+                HasShadow="True"
+                HorizontalOptions="Fill">
+
+                <VerticalStackLayout Spacing="12">
+
+                    <Label
+                        Text="הציון של הקבוצה"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        TextColor="#374151" />
+
+                    <Label
+                        x:Name="lblFinalSAcore"
+                        FontSize="56"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        TextColor="#2563EB" />
+
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Footer -->
+            <Label
+                Text="האפליקציה נבנתה על ידי תלמידי מגמת מחשבים י״א תיכון טשרנחובסקי"
+                FontSize="14"
+                HorizontalTextAlignment="Center"
+                TextColor="#6B7280" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
 </ContentPage>
