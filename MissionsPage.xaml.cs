@@ -62,7 +62,7 @@ public partial class MissionsPage : ContentPage
             return;
         }
 
-        if (points <= 1)
+        if (points < 1)
         {
             CleanAllFields();
             btnCheckAnswer.Text = "No More tries";
@@ -99,13 +99,12 @@ public partial class MissionsPage : ContentPage
     }
 
 
-    private void BtnNextMission_Clicked(object sender, EventArgs e)
+    private async void BtnNextMission_Clicked(object sender, EventArgs e)
     {
-        if (MainPage.myGame.IsCompleted() == true)
-        {
-            Shell.Current.GoToAsync("//EndGamePage");
+        bool next = await DisplayAlert("Next task", "Are you sure?", "Yes", "No");
+
+        if (!next)
             return;
-        }
 
         _timer?.Stop();
         CleanAllFields();
@@ -127,10 +126,19 @@ public partial class MissionsPage : ContentPage
         entAnswer.Text = "";
         btnCheckAnswer.Text = "Check Answer";
     }
-    private void BtnEndGame_Clicked(object sender, EventArgs e)
+
+    // Change 'Task' to 'void'
+    private async void BtnEndGame_Clicked(object sender, EventArgs e)
     {
-        Shell.Current.GoToAsync("//EndGamePage");
+        bool exitApp = await DisplayAlert("End Game", "Are you sure?", "Yes", "No");
+
+        if (exitApp)
+        {
+            // Use await here to ensure navigation happens smoothly
+            await Shell.Current.GoToAsync("//EndGamePage");
+        }
     }
+
     private void ShowMsg(String msg, bool isPositiveMessage)
     {
         if (msg.Length == 0)
