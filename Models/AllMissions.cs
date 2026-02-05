@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Maui.Controls.Compatibility;
+using System;
 using System.Collections.Generic;
 
 namespace TreasureRace_2025.Models
@@ -18,18 +19,35 @@ namespace TreasureRace_2025.Models
             missions[4] = new Mission(5, "ביו-טכנולוגיה-PH", " מעבדת ביוטכולוגיה", "19", 15, 8);
 
             //-- VIVI
-            missions[5] = new Mission(6, "What is the Code?", "חדר מטבחון במדעי המחשב", "613", 15, 8);
-            missions[6] = new Mission(7, "Genious only", "מעבדת מחשבים קטנה מעל חדר מוסיקה", "26", 10, 10); // להקצות חדר
-            missions[7] = new Mission(8, "Result with num=8", "מעבדת מחשבים גדולה מעל חדר מוסיקה", "40320", 20, 10); // להקצות חדר
-            missions[8] = new Mission(9, "מדעי המחשב", "תגיעו למטבחון שנמצא ליד חדר מחשבים", "מחכים לכם", 10, 8);
-            missions[9] = new Mission(10, "1_true/0_false", "מעבדת מחשבים קטנה מעל חדר מוסיקה", "0", 15,8); // להקצות חדר
-            missions[10] = new Mission(11, "num=6791", "חדר מטבחון במדעי המחשב", "1976", 20, 8); // להקצות חדר
+            missions[5] = new Mission(6, "What is the Code?", "מבואה מגמת מחשבים", "613", 15, 8);
+            missions[6] = new Mission(7, "Genious only", "מבואה מגמת מחשבים", "26", 10, 10); 
+            missions[7] = new Mission(8, "Result with num=8", "מבואה מגמת מחשבים", "40320", 20, 10); 
+            missions[8] = new Mission(9, "מדעי המחשב", "מטבחון במדעי המחשב", "מחכים לכם", 10, 8);
+            missions[9] = new Mission(10, "1_true/0_false", "מעבדת מחשבים גדולה מעל חדר מוסיקה", "0", 15,8); 
+            missions[10] = new Mission(11, "num=6791", "מעבדת מחשבים גדולה מעל חדר מוסיקה", "1976", 20, 8); 
             missions[11] = new Mission(12, "Weight", "מבואה מגמת מחשבים", "27", 12, 8  );
-            missions[12] = new Mission(13, "Hats A/B/C/D", "חדר מטבחון במדעי המחשב", "C", 20, 8); //-- אפשר להחליף עם  משימת פיזיקה
-            missions[13] = new Mission(14, "Worms", "מעבדת מחשבים קטנה מעל חדר מוסיקה", "15", 10, 10);// להקצות חדר
-            missions[14] = new Mission(15, "Height", "מבואה מגמת מחשבים", "150", 14, 8); // להקצות חדר
+            missions[12] = new Mission(13, "Hats A/B/C/D", "חדר מטבחון במדעי המחשב", "C", 20, 8); 
+            missions[13] = new Mission(14, "Worms", "ממעבדת מחשבים גדולה מעל חדר מוסיקה", "15", 10, 10);
+            missions[14] = new Mission(15, "Height", "מבואה מגמת מחשבים", "150", 14, 8); 
             missions[15] = new Mission(16, "I lied yesterday", "מעבדת מחשבים קטנה מעל חדר מוסיקה", "Wednesday", 10,8);
         }
+
+        
+2	משימת מדעי המחשב מעבדת מחשבים קטנה מעל חדר מוסיקה הנדסת תוכנה	8
+3	משימת מדעי המחשב מעבדת מחשבים גדולה מעל חדר מוסיקה	3518	8
+4	ביו-טכנולוגיה -אטום מעבדת מחשבים גדולה מעל חדר מוסיקה	3	8
+5	ביו-טכנולוגיה-PH מעבדת ביוטכולוגיה	19	8
+6	What is the Code?	מעבדת מחשבים גדולה מעל חדר מוסיקה	613	8
+7	Genious only    מבואה מגמת מחשבים	26	8
+8	Result with num=8	Result with num=8	40320	8
+9	מדעי המחשב  מטבחון במדעי המחשב מחכים לכם	8
+10	1_true/0_false מעבדת ביוטכולוגיה	0	8
+11	num=6791	חדר מטבחון במדעי המחשב	1976	8
+12	Weight מבואה מגמת מחשבים	27	8
+13	Hats A/B/C/D חדר מטבחון במדעי המחשב C	8
+14	Worms מבואה מגמת מחשבים	15	8
+15	Height מבואה מגמת מחשבים	150	8
+16	I lied yesterday מעבדת מחשבים קטנה מעל חדר מוסיקה Wednesday	8
 
         public Mission[] Shuffle(Mission[] missions, int n)
         {
