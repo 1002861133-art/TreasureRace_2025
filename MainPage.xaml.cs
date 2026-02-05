@@ -18,22 +18,21 @@ namespace TreasureRace_2025
         {
             if (entGroupName.Text == "" || entGroupNumber.Text == "")
             {
-                DisplayAlert("Error", "Please enter group name and number", "Close");
+                DisplayAlert("שגיאה", "אנא הזן את שם הקבוצה ומספרה.", "סגור");
                 return;
             }
 
             if (!int.TryParse(entGroupNumber.Text, out int groupNum))
             {
-                DisplayAlert("Error", "Group number must be a number", "Close");
+                DisplayAlert("שגיאה", "מספר הקבוצה חייב להיות מספר.", "סגור");
                 return;
             }
 
             if (groupNum <= 0 || groupNum > 20)
             {
-                DisplayAlert("Error", "Group number 1-20", "Close");
+                DisplayAlert("שגיאה", "מספר הקבוצה חייב להיות בין 1 ל‑20.", "סגור");
                 return;
             }
-
 
             int numOfPlayers = 0;
             players[0] = entPlayer1.Text;
@@ -49,10 +48,9 @@ namespace TreasureRace_2025
 
             if (players.Count(p=> !string.IsNullOrEmpty(p)) < 2)
             {
-                DisplayAlert("Error", "Please select at least 2 players", "Close");
+                DisplayAlert("Error", "אנא בחר לפחות שני שחקנים.", "סגור");
                 return;
             }
-
 
             for (int i = 0; i < 10; i++)
             {
@@ -63,17 +61,7 @@ namespace TreasureRace_2025
             myGame = new Game(group);
 
             Shell.Current.GoToAsync("//MissionsPage");
-
-            //GoToMission();
         }
-
-        private async void GoToMission()
-        {
-            await Shell.Current.GoToAsync("//MissionsPage");
-
-        }
-
      }
-
 }
 

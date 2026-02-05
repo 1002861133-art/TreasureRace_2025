@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TreasureRace_2025.MissionsPage"
-             Title="Missions"
+             Title="המרוץ למיליון - בית ספר טשרניחובסקי 2026"
+  			 FlowDirection="RightToLeft"
              BackgroundColor="#F5F7FA">
 
     <ScrollView>
@@ -20,14 +21,14 @@
 
                 <Frame BackgroundColor="#FFE4B5" CornerRadius="12" Padding="12" HasShadow="True" HorizontalOptions="FillAndExpand">
                     <HorizontalStackLayout HorizontalOptions="FillAndExpand">
-                        <Label Text="Time Left:" FontSize="18" FontAttributes="Bold" TextColor="#1F2937"/>
+                        <Label Text="הזמן שנשאר: " FontSize="18" FontAttributes="Bold" TextColor="#1F2937"/>
                         <Label x:Name="lblTimeLeft" Text="20:00" FontSize="18" TextColor="#1F2937" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End"/>
                     </HorizontalStackLayout>
                 </Frame>
 
                 <Frame BackgroundColor="#D3D3D3" CornerRadius="12" Padding="12" HasShadow="True" HorizontalOptions="FillAndExpand">
                     <HorizontalStackLayout HorizontalOptions="FillAndExpand">
-                        <Label Text="Your Points:" FontSize="18" FontAttributes="Bold" TextColor="#1F2937"/>
+                        <Label Text="הנקודות של הקבוצה שלכם: " FontSize="18" FontAttributes="Bold" TextColor="#1F2937"/>
                         <Label x:Name="lblPoints" Text="0" FontSize="18" TextColor="#1F2937" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End"/>
                     </HorizontalStackLayout>
                 </Frame>
@@ -37,7 +38,7 @@
             <!-- Message / Instructions -->
             <Frame BackgroundColor="#556B2F" CornerRadius="12" Padding="12" HasShadow="True">
                 <Label x:Name="lblMsg"
-                       Text="Welcome to the game! In each mission, you will find a task... Good Luck!"
+                       Text="ברוך הבא למשחק! בכל משימה תמצא משימה לבצע… בהצלחה!"
                        FontSize="16"
                        TextColor="White"
                        HorizontalTextAlignment="Center"
@@ -70,14 +71,24 @@
                            FontAttributes="Bold"/>
 
                     <!-- Answer Input -->
-                    <HorizontalStackLayout Spacing="12" VerticalOptions="Center">
-                        <Label Text="Your Answer:" FontSize="16" VerticalTextAlignment="Center"/>
-                        <Entry x:Name="entAnswer" FontSize="16" Placeholder="Answer" HorizontalOptions="FillAndExpand"/>
-                    </HorizontalStackLayout>
+					<!-- Answer Input -->
+					<Grid ColumnDefinitions="Auto,*"
+						  ColumnSpacing="12"
+						  VerticalOptions="Center">
+
+						<Label Text="תשובה נכונה:"
+							   FontSize="16"
+							   VerticalTextAlignment="Center"/>
+
+						<Entry x:Name="entAnswer"
+							   Grid.Column="1"
+							   FontSize="16"
+							   Placeholder="Answer"/>
+					</Grid>
 
                     <!-- Check Answer Button -->
                     <Button x:Name="btnCheckAnswer"
-                            Text="Check Answer"
+                            Text="בדוק את השאלה"
                             FontSize="18"
                             BackgroundColor="#2563EB"
                             TextColor="White"
@@ -90,7 +101,7 @@
             <!-- Navigation Buttons -->
             <HorizontalStackLayout Spacing="16" HorizontalOptions="CenterAndExpand">
                 <Button x:Name="btnNextMission"
-                        Text="Next"
+                        Text="עבור לשאלה הבאה"
                         FontSize="18"
                         BackgroundColor="#6B21A8"
                         TextColor="White"
@@ -99,7 +110,7 @@
                         HorizontalOptions="FillAndExpand"/>
 
                 <Button x:Name="btnEndGame"
-                        Text="End Game"
+                        Text="סיים משחק"
                         FontSize="18"
                         BackgroundColor="White"
                         TextColor="#6B21A8"

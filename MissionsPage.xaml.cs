@@ -46,96 +46,132 @@ public partial class MissionsPage : ContentPage
         _timer.Start();
     }
 
-    private void BtnCheckAnswer_Clicked(object sender, EventArgs e)
+    private async void BtnCheckAnswer_Clicked(object sender, EventArgs e)
     {
-        if (entAnswer.Text == "")
+        try
         {
-            DisplayAlert("Mission Page", "Please enter an answer","close");
-            return;
-        }
+            if (entAnswer.Text == "")
+            {
+                await DisplayAlert("דף משימות", "אנא הקלד תשובה בבקשה", "סגור חלון");
+                return;
+            }
 
-        int missionNumber = MainPage.myGame.GetIndex();
+            int missionNumber = MainPage.myGame.GetIndex();
 
-        if (MainPage.myGame.IsCompleted() == true)
-        {
-            Shell.Current.GoToAsync("//EndGamePage");
-            return;
-        }
+            if (MainPage.myGame.IsCompleted() == true)
+            {
+                await Shell.Current.GoToAsync("//EndGamePage");
+                return;
+            }
 
-        if (points < 1)
-        {
-            CleanAllFields();
-            btnCheckAnswer.Text = "No More tries";
+            if (points == 0)
+            {
+                CleanAllFields();
+                btnCheckAnswer.Text = "אין יותר ניסיונות";
+                btnCheckAnswer.IsEnabled = false;
+                ShowMsg("אין יותר ניסיונות, אנא עבור לשאלה הבאה.", false);
+                return;
+            }
+
+            if (mission == null || helper.MissionNotDone(missionNumber) == false)
+            {
+                ShowMsg("המשימה כבר הושלמה.", false);
+                return;
+            }
+
+            bool isGoodAnswer = entAnswer.Text.ToUpper() == mission.GetGoodAnswer().ToUpper();
+            if (!isGoodAnswer)
+            {
+                points /= 2;
+                if (points == 0)
+                {
+                    CleanAllFields();
+                    btnCheckAnswer.Text = "אין יותר ניסיונות";
+                    btnCheckAnswer.IsEnabled = false;
+                    ShowMsg("אין יותר ניסיונות, אנא עבור לשאלה הבאה.", false);
+                    return;
+                }
+
+                mission.SetPoint(points);
+                lblMissionPlace.Text = mission.GetPlace() + " (" + points + " נקודות)";
+                btnCheckAnswer.Text = "בדוק שוב את התשובה עבור חצי מהנקודות (" + points.ToString() + ")";
+                btnCheckAnswer.IsEnabled = true;
+                ShowMsg("תשובה שגויה.", false);
+                return;
+            }
+
+            MainPage.myGame.AddPoints(points);
+            MainPage.myGame.missionsDone.Insert(missionNumber);
+            lblPoints.Text = MainPage.myGame.GetTotalPoints().ToString();
+            btnCheckAnswer.Text = "מצוין! עבור למשימה הבאה.";
             btnCheckAnswer.IsEnabled = false;
-            ShowMsg("No more tries, Please go to the next question", false);
-            return;
-        }
+            _timer?.Stop();
+            ShowMsg("תשובה נכונה לחץ על כפתור הבא", true);
 
-        if (mission == null || helper.MissionNotDone(missionNumber) == false)
+        }
+        catch (Exception ex)
         {
-            ShowMsg("Mission already done", false);
-            return;
+            await DisplayAlert("דף משימות", "שגיאה בלתי צפויה " + ex.Message, "סגור חלון");
         }
-
-        bool isGoodAnswer = entAnswer.Text == mission.GetGoodAnswer();
-        if (!isGoodAnswer)
-        {
-            points /= 2;
-            mission.SetPoint(points);
-            lblMissionPlace.Text = mission.GetPlace() + " (" + points + " points)";
-            btnCheckAnswer.Text = "Recheck Anwser for half the points (" + points.ToString() + ")";
-            btnCheckAnswer.IsEnabled = true;
-            ShowMsg("Wrong Answer", false);
-            return;
-        }
-
-        MainPage.myGame.AddPoints(points);
-        MainPage.myGame.missionsDone.Insert(missionNumber);
-        lblPoints.Text = MainPage.myGame.GetTotalPoints().ToString();
-        btnCheckAnswer.Text = "Very Good!, Go to next mission";
-        btnCheckAnswer.IsEnabled = false;
-        _timer?.Stop();
-        ShowMsg("Correct Answer, Click on Next", true);
     }
-
 
     private async void BtnNextMission_Clicked(object sender, EventArgs e)
     {
-        bool next = await DisplayAlert("Next task", "Are you sure?", "Yes", "No");
+        try
+        {
+            bool next = await DisplayAlert("משימה חדשה", "אתה בטוח?", "כן", "לא");
 
-        if (!next)
-            return;
+            if (!next)
+                return;
 
-        _timer?.Stop();
-        CleanAllFields();
-        MainPage.myGame.MoveToNextMissionIndex();
-        this.mission = MainPage.myGame.GetCurrentMission();
-        btnCheckAnswer.IsEnabled = true;
-        ShowMsg("", true);
-        _timeLeft = TimeSpan.FromMinutes(mission.GetTimeMinutes());
-        _timer?.Start();
+            if (MainPage.myGame.IsCompleted())
+            {
+                await DisplayAlert("משחק הסתיים", "אנא לח בבקשה על כפתור סיום משחק?", "סגור");
+                return;
+            }
 
-        points = mission.GetPoint();
-        lblMissionPlace.Text = mission.GetPlace() + " (" + mission.GetPoint() + " points)";
-        lblMissionName.Text = mission.GetName();
+            _timer?.Stop();
+            CleanAllFields();
+            MainPage.myGame.MoveToNextMissionIndex();
+            this.mission = MainPage.myGame.GetCurrentMission();
+            btnCheckAnswer.IsEnabled = true;
+            ShowMsg("", true);
+            _timeLeft = TimeSpan.FromMinutes(mission.GetTimeMinutes());
+            _timer?.Start();
+
+            points = mission.GetPoint();
+            lblMissionPlace.Text = mission.GetPlace() + " (" + mission.GetPoint() + " points)";
+            lblMissionName.Text = mission.GetName();
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("דף משימות", "שגיאה בלתי צפויה " + ex.Message, "סגור חלון");
+        }
     }
+
     private void CleanAllFields()
     {
         lblMissionPlace.Text = "";
         lblMissionName.Text = "";
         entAnswer.Text = "";
-        btnCheckAnswer.Text = "Check Answer";
+        btnCheckAnswer.Text = "בדוק את התשובה";
     }
 
     // Change 'Task' to 'void'
     private async void BtnEndGame_Clicked(object sender, EventArgs e)
     {
-        bool exitApp = await DisplayAlert("End Game", "Are you sure?", "Yes", "No");
-
-        if (exitApp)
+        try
         {
-            // Use await here to ensure navigation happens smoothly
-            await Shell.Current.GoToAsync("//EndGamePage");
+            bool exitApp = await DisplayAlert("סיום משחק", "האם אתה בטוח?", "כן", "לא");
+            if (exitApp)
+            {
+                // Use await here to ensure navigation happens smoothly
+                await Shell.Current.GoToAsync("//EndGamePage");
+            }
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("דף משימות", "שגיאה בלתי צפויה " + ex.Message, "סגור חלון");
         }
     }
 

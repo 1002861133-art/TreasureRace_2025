@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TreasureRace_2025.MainPage"
              BackgroundColor="#F5F7FA"
-             Title="Treasure Race">
-
+             FlowDirection="RightToLeft"
+             Title="המרוץ למיליון - בית ספר טשרניחובסקי 2026">
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="24" VerticalOptions="Center">
 
@@ -21,7 +21,7 @@
             </HorizontalStackLayout>
 
             <!-- Title -->
-            <Label Text="Treasure Race"
+            <Label Text="המרוץ אחר המטמון"
                    FontSize="32"
                    FontAttributes="Bold"
                    HorizontalTextAlignment="Center"
@@ -38,20 +38,26 @@
                 <VerticalStackLayout Spacing="16">
 
                     <!-- Group Name / Number -->
-                    <HorizontalStackLayout Spacing="12">
-                        <Entry x:Name="entGroupName"
-                               Placeholder="Group Name"
-                               FontSize="16"
-                               HorizontalOptions="FillAndExpand" />
-                        <Entry x:Name="entGroupNumber"
-                               Placeholder="Group Number"
-                               Keyboard="Numeric"
-                               FontSize="16"
-                               WidthRequest="100" />
-                    </HorizontalStackLayout>
+                    <Grid ColumnDefinitions="*,100" ColumnSpacing="12"
+                              HorizontalOptions="FillAndExpand"
+                              VerticalOptions="Center">
+
+                            <!-- Entry לשם הקבוצה: יתפוס את כל השטח הפנוי -->
+                            <Entry x:Name="entGroupName"
+                                   Placeholder="שם הקבוצה"
+                                   FontSize="16"
+                                   HorizontalOptions="FillAndExpand"/>
+
+                            <!-- Entry למספר הקבוצה: רוחב קבוע -->
+                            <Entry x:Name="entGroupNumber"
+                                   Placeholder="מספר קבוצה"
+                                   Keyboard="Numeric"
+                                   FontSize="16"
+                                   Grid.Column="1"/>
+                    </Grid>
 
                     <!-- Players List Label -->
-                    <Label Text="Players Names"
+                    <Label Text="רשימת השחקנים בקבוצה"
                            FontSize="18"
                            FontAttributes="Bold"
                            TextColor="#374151" />
@@ -71,23 +77,23 @@
                         </Grid.ColumnDefinitions>
 
                         <!-- Player Entries -->
-                        <Entry Grid.Row="0" Grid.Column="0" x:Name="entPlayer1" Placeholder="Player 1 Name" FontSize="16"/>
-                        <Entry Grid.Row="0" Grid.Column="1" x:Name="entPlayer2" Placeholder="Player 2 Name" FontSize="16"/>
-                        <Entry Grid.Row="1" Grid.Column="0" x:Name="entPlayer3" Placeholder="Player 3 Name" FontSize="16"/>
-                        <Entry Grid.Row="1" Grid.Column="1" x:Name="entPlayer4" Placeholder="Player 4 Name" FontSize="16"/>
-                        <Entry Grid.Row="2" Grid.Column="0" x:Name="entPlayer5" Placeholder="Player 5 Name" FontSize="16"/>
-                        <Entry Grid.Row="2" Grid.Column="1" x:Name="entPlayer6" Placeholder="Player 6 Name" FontSize="16"/>
-                        <Entry Grid.Row="3" Grid.Column="0" x:Name="entPlayer7" Placeholder="Player 7 Name" FontSize="16"/>
-                        <Entry Grid.Row="3" Grid.Column="1" x:Name="entPlayer8" Placeholder="Player 8 Name" FontSize="16"/>
-                        <Entry Grid.Row="4" Grid.Column="0" x:Name="entPlayer9" Placeholder="Player 9 Name" FontSize="16"/>
-                        <Entry Grid.Row="4" Grid.Column="1" x:Name="entPlayer10" Placeholder="Player 10 Name" FontSize="16"/>
+                        <Entry Grid.Row="0" Grid.Column="0" x:Name="entPlayer1" Placeholder="שם השחקן הראשון." FontSize="16"/>
+                        <Entry Grid.Row="0" Grid.Column="1" x:Name="entPlayer2" Placeholder="שם השחקן השני." FontSize="16"/>
+                        <Entry Grid.Row="1" Grid.Column="0" x:Name="entPlayer3" Placeholder="שם השחקן השלישי." FontSize="16"/>
+                        <Entry Grid.Row="1" Grid.Column="1" x:Name="entPlayer4" Placeholder="שם השחקן הרביעי." FontSize="16"/>
+                        <Entry Grid.Row="2" Grid.Column="0" x:Name="entPlayer5" Placeholder="שם השחקן החמישי." FontSize="16"/>
+                        <Entry Grid.Row="2" Grid.Column="1" x:Name="entPlayer6" Placeholder="שם השחקן השישי." FontSize="16"/>
+                        <Entry Grid.Row="3" Grid.Column="0" x:Name="entPlayer7" Placeholder="שם השחקן השביעי." FontSize="16"/>
+                        <Entry Grid.Row="3" Grid.Column="1" x:Name="entPlayer8" Placeholder="שם השחקן השמיני." FontSize="16"/>
+                        <Entry Grid.Row="4" Grid.Column="0" x:Name="entPlayer9" Placeholder="שם השחקן התשיעי." FontSize="16"/>
+                        <Entry Grid.Row="4" Grid.Column="1" x:Name="entPlayer10" Placeholder="שם השחקן העשירי." FontSize="16"/>
                     </Grid>
                 </VerticalStackLayout>
             </Frame>
 
             <!-- Start Game Button -->
             <Button x:Name="btnStartGame"
-                    Text="Start Game"
+                    Text="התחל את המרוץ!!"
                     FontSize="20"
                     FontAttributes="Bold"
                     BackgroundColor="#2563EB"
