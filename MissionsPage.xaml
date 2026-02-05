@@ -38,7 +38,7 @@
             <!-- Message / Instructions -->
             <Frame BackgroundColor="#556B2F" CornerRadius="12" Padding="12" HasShadow="True">
                 <Label x:Name="lblMsg"
-                       Text="ברוך הבא למשחק! בכל משימה תמצא משימה לבצע… בהצלחה!"
+                       Text="ברוך הבא למשחק! , לפניך יוצגו 16 משימות,כל משימה 8 דקות, בכל משימה תתבקש ללכת לחדר מסוים,שם תחכה לך משימה בגליון דף, עליך לבצע אותה או להמשיך למשימה הבאה... בהצלחה!"
                        FontSize="16"
                        TextColor="White"
                        HorizontalTextAlignment="Center"
@@ -83,7 +83,7 @@
 						<Entry x:Name="entAnswer"
 							   Grid.Column="1"
 							   FontSize="16"
-							   Placeholder="Answer"/>
+							   Placeholder="הקלד כאן את התשובה לשאלה"/>
 					</Grid>
 
                     <!-- Check Answer Button -->

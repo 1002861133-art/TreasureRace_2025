@@ -12,10 +12,10 @@ namespace TreasureRace_2025.Models
             this.missions = new Mission[MISSIONS_NUM];
 
             missions[0] = new Mission(1, "משימות 1-3 כימיה", "מעבדת כימיה", "123", 30, 15);
-            missions[1] = new Mission(2, "מדעי המחשב", "יש להגיע לחדר שמתחתיו יש רעש של תופים ולספור 3 דלתות כניסה עד הכניסה לחדר", "הנדסת תוכנה", 20, 15);
-            missions[2] = new Mission(3, "Result for num=5183", "Mission_3", "3518", 20, 8);
-            missions[3] = new Mission(4, "ביו-טכנולוגיה -אטום", "תגיעו למעבדת ביוטכולוגיה", "3", 15, 8);
-            missions[4] = new Mission(5, "ביו-טכנולוגיה-PH", "תגיעו למעבדת ביוטכולוגיה", "19", 15, 8);
+            missions[1] = new Mission(2, "משימת מדעי המחשב", "מעבדת מחשבים קטנה מעל חדר מוסיקה", "הנדסת תוכנה", 20, 15);
+            missions[2] = new Mission(3, "Result for num=5183", "מעבדת מחשבים גדולה מעל חדר מוסיקה", "3518", 20, 8);
+            missions[3] = new Mission(4, "ביו-טכנולוגיה -אטום", "מעבדת ביוטכולוגיה", "3", 15, 8);
+            missions[4] = new Mission(5, "ביו-טכנולוגיה-PH", " מעבדת ביוטכולוגיה", "19", 15, 8);
 
             //-- VIVI
             missions[5] = new Mission(6, "What is the Code?", "חדר מטבחון במדעי המחשב", "613", 15, 8);

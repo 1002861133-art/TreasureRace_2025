@@ -28,9 +28,9 @@ namespace TreasureRace_2025
                 return;
             }
 
-            if (groupNum <= 0 || groupNum > 20)
+            if (groupNum <= 0 || groupNum > 16)
             {
-                DisplayAlert("שגיאה", "מספר הקבוצה חייב להיות בין 1 ל‑20.", "סגור");
+                DisplayAlert("שגיאה", "מספר הקבוצה חייב להיות בין 1 ל‑16.", "סגור");
                 return;
             }
 

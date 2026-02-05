@@ -79,7 +79,7 @@ public partial class MissionsPage : ContentPage
                 return;
             }
 
-            bool isGoodAnswer = entAnswer.Text.ToUpper() == mission.GetGoodAnswer().ToUpper();
+            bool isGoodAnswer = entAnswer.Text.ToUpper().Trim() == mission.GetGoodAnswer().ToUpper().Trim();
             if (!isGoodAnswer)
             {
                 points /= 2;
@@ -140,7 +140,7 @@ public partial class MissionsPage : ContentPage
             _timer?.Start();
 
             points = mission.GetPoint();
-            lblMissionPlace.Text = mission.GetPlace() + " (" + mission.GetPoint() + " points)";
+            lblMissionPlace.Text = mission.GetPlace() + " (" + mission.GetPoint() + " נקודות)";
             lblMissionName.Text = mission.GetName();
         }
         catch (Exception ex)

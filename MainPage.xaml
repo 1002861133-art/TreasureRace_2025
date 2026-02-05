@@ -38,7 +38,7 @@
                 <VerticalStackLayout Spacing="16">
 
                     <!-- Group Name / Number -->
-                    <Grid ColumnDefinitions="*,100" ColumnSpacing="12"
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="12"
                               HorizontalOptions="FillAndExpand"
                               VerticalOptions="Center">
 
@@ -46,7 +46,7 @@
                             <Entry x:Name="entGroupName"
                                    Placeholder="שם הקבוצה"
                                    FontSize="16"
-                                   HorizontalOptions="FillAndExpand"/>
+                                             HorizontalOptions="FillAndExpand"/>
 
                             <!-- Entry למספר הקבוצה: רוחב קבוע -->
                             <Entry x:Name="entGroupNumber"

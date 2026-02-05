@@ -25,7 +25,7 @@ namespace TreasureRace_2025.Models
             this.timeMinutes = timeMinutes;
         }
         public int GetCode() { return missionCode; }
-        public string GetName() { return missionName; }
+        public string GetName() { return $" קוד משימה {missionCode} - '{missionName}'"; }
         public string GetPlace() { return missionPlace; }
         public string GetGoodAnswer() { return goodAnswer; }
         public int GetTimeMinutes() { return timeMinutes; }
