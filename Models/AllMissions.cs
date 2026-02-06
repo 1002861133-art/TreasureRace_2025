@@ -7,18 +7,23 @@ namespace TreasureRace_2025.Models
     public class AllMissions
     {
         private Mission[] missions;
-        public const int MISSIONS_NUM = 16;
+        public static int MISSIONS_NUM = 18;
         public AllMissions()
         {
             this.missions = new Mission[MISSIONS_NUM];
 
+            //-- CHEMISTRY (2)
             missions[0] = new Mission(1, "משימות 1-3 כימיה", "מעבדת כימיה", "123", 30, 15);
             missions[1] = new Mission(2, "משימת מדעי המחשב", "מעבדת מחשבים קטנה מעל חדר מוסיקה", "הנדסת תוכנה", 20, 15);
+
+            //-- COMPUTER SCIENCE (1)
             missions[2] = new Mission(3, "Result for num=5183", "מעבדת מחשבים גדולה מעל חדר מוסיקה", "3518", 20, 8);
+
+            //-- BIO TECHNOLOGY (2)
             missions[3] = new Mission(4, "ביו-טכנולוגיה -אטום", "מעבדת ביוטכולוגיה", "3", 15, 8);
             missions[4] = new Mission(5, "ביו-טכנולוגיה-PH", " מעבדת ביוטכולוגיה", "19", 15, 8);
 
-            //-- VIVI
+            //-- COMPUTER SCIENCE (1) (VIVI) 11
             missions[5] = new Mission(6, "What is the Code?", "מבואה מגמת מחשבים", "613", 15, 8);
             missions[6] = new Mission(7, "Genious only", "מבואה מגמת מחשבים", "26", 10, 10); 
             missions[7] = new Mission(8, "Result with num=8", "מבואה מגמת מחשבים", "40320", 20, 10); 
@@ -30,6 +35,10 @@ namespace TreasureRace_2025.Models
             missions[13] = new Mission(14, "Worms", "ממעבדת מחשבים גדולה מעל חדר מוסיקה", "15", 10, 10);
             missions[14] = new Mission(15, "Height", "מבואה מגמת מחשבים", "150", 14, 8); 
             missions[15] = new Mission(16, "I lied yesterday", "מעבדת מחשבים קטנה מעל חדר מוסיקה", "Wednesday", 10,8);
+
+            // PHISICS (2)S
+            missions[16] = new Mission(17, " שאלה בפיזיקה - מספר 1", "מעבדת פיזיקה", "שביל החלב", 10, 8);
+            missions[17] = new Mission(18, " שאלה בפיזיקה - מספר 2", "מעבדת פיזיקה", "פלוטו", 10, 8);
         }
 
         public Mission[] Shuffle(Mission[] missions, int n)

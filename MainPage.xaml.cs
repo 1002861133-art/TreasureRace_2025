@@ -28,9 +28,9 @@ namespace TreasureRace_2025
                 return;
             }
 
-            if (groupNum <= 0 || groupNum > 16)
+            if (groupNum <= 0 || groupNum > AllMissions.MISSIONS_NUM)
             {
-                DisplayAlert("שגיאה", "מספר הקבוצה חייב להיות בין 1 ל‑16.", "סגור");
+                DisplayAlert("שגיאה", $"מספר הקבוצה חייב להיות בין 1 ל‑{AllMissions.MISSIONS_NUM}.", "סגור");
                 return;
             }
 
